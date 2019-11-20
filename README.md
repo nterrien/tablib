@@ -4,12 +4,12 @@
 [![Build Status](https://travis-ci.org/jazzband/tablib.svg?branch=master)](https://travis-ci.org/jazzband/tablib)
 [![codecov](https://codecov.io/gh/jazzband/tablib/branch/master/graph/badge.svg)](https://codecov.io/gh/jazzband/tablib)
 
-    _____         ______  ___________ ______
-    __  /_______ ____  /_ ___  /___(_)___  /_
-    _  __/_  __ `/__  __ \__  / __  / __  __ \
-    / /_  / /_/ / _  /_/ /_  /  _  /  _  /_/ /
-    \__/  \__,_/  /_.___/ /_/   /_/   /_.___/
-
+    _____         ______  ___________ ______        ____    __  __      __          ____    ____    _______
+    __  /_______ ____  /_ ___  /___(_)___  /_      /    \  / / / / (_) / /     (_) /    \  /    \  / _____/
+    _  __/_  __ `/__  __ \__  / __  / __  __ \    / (_) / / /_/ / __  / /     __  / (_) / / (_) / / /__    
+    / /_  / /_/ / _  /_/ /_  /  _  /  _  /_/ /   / ____/ / __  / / / / /     / / / ____/ / ____/ / ___/    
+    \__/  \__,_/  /_.___/ /_/   /_/   /_.___/   / /     / / / / / / / /___  / / / /     / /     / /_____   
+                                               /_/     /_/ /_/ /_/ /_____/ /_/ /_/     /_/     /_______/   
 
 Tablib is a format-agnostic tabular dataset library, written in Python.
 
