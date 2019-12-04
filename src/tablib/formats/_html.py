@@ -5,6 +5,8 @@ import codecs
 from io import BytesIO
 
 from MarkupPy import markup
+import requests
+import lxml.html as lh
 
 
 class HTMLFormat:
@@ -60,3 +62,28 @@ class HTMLFormat:
             wrapper.write('\n')
 
         return stream.getvalue().decode('utf-8')
+
+    @classmethod
+    def import_set (cls, dset, in_stream, id=None):
+        """Returns dataset from HTML stream."""
+
+        dset.wipe()
+
+        page = requests.get(in_stream)
+        doc = lh.fromstring(page.content)
+        tables = doc.cssselect("table")
+
+        # Si précisé, on récupère la bonne table, sinon en prend la première
+        ##TODO
+        table = tables[0]
+
+        tr_elements = table.xpath('//tr')
+
+        # On regarde si la première ligne est un Header ou pas si oui -> dataset.header; sinon -> pas de header
+        ##TODO
+
+        for tr in tr_elements:
+            dset.append([t.text_content() for t in tr])
+
+        return dset
+
