@@ -87,3 +87,12 @@ class HTMLFormat:
 
         return dset
 
+    @classmethod
+    def detect(cls, stream):
+        # returns True if given stream is parsable as xxx
+        try:
+            requests.get(stream)
+            return True
+        except Exception:
+            return False
+
