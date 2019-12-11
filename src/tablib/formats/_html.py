@@ -75,10 +75,14 @@ class HTMLFormat:
         table = None
         #We take the id-designated table
         if (id != None) :
-            table = doc.get_element_by_id (id)
-            # Check if the element is a table
-            if table.tag != 'table' :
-                table = None
+            try :
+                table = doc.get_element_by_id (id)
+                # Check if the element is a table
+                if table.tag != 'table' :
+                    table = None
+            except Exception :
+                pass
+
 
         # If there is no id and if the id element is not a table, we take the first table of the page
         if table == None:
