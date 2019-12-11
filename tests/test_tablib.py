@@ -630,6 +630,49 @@ class HTMLTests(BaseTestCase):
 
         self.assertEqual(html, d.html)
 
+##TODO
+############################################################"""
+    def test_html_format_detect(self):
+        """Test HTML format detection."""
+
+        _html = ('<table>\n<thead>\n<tr><th>first_name</th>\n<th>last_name</th>\n<th>gpa</th></tr>\n</thead>\n<tr><td>John</td>\n<td>Adams</td>\n<td>90</td></tr>\n<tr><td>George</td>\n<td>Washington</td>\n<td>67</td></tr>\n</table>')
+        _bunk = (
+            '¡¡¡¡¡¡¡¡£™∞¢£§∞§¶•¶ª∞¶•ªº••ª–º§•†•§º¶•†¥ª–º•§ƒø¥¨©πƒø†ˆ¥ç©¨√øˆ¥≈†ƒ¥ç©ø¨çˆ¥ƒçø¶'
+        )
+
+        fmt = registry.get_format('html')
+        self.assertTrue(fmt.detect(_html))
+	# Sometimes i have : AttributeError: type object 'HTMLFormat' has no attribute 'detect'
+        self.assertFalse(fmt.detect(_bunk))
+
+    def test_html_import_set(self):
+        """Generate and import HTML set serialization."""
+        data.append(self.john)
+        data.append(self.george)
+        data.headers = self.headers
+
+        _html = data.html
+
+        data.html = _html
+
+        self.assertEqual(_html, data.html)
+
+    def test_html_import_set_with_spaces(self):
+        """Generate and import HTML set serialization when row values have
+        spaces."""
+        data.append(('Bill Gates', 'Microsoft'))
+        data.append(('Steve Jobs', 'Apple'))
+        data.headers = ('Name', 'Company')
+
+        _html = data.html
+
+        data.html = _html
+	#AttributeError: type object 'HTMLFormat' has no attribute 'import_set'
+
+        self.assertEqual(_html, data.html)
+
+############################################################"""
+
 
 class RSTTests(BaseTestCase):
     def test_rst_force_grid(self):
