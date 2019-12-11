@@ -71,19 +71,33 @@ class HTMLFormat:
 
         page = requests.get(in_stream)
         doc = lh.fromstring(page.content)
-        tables = doc.cssselect("table")
+       
+        table = None
+        #We take the id-designated table
+        if (id != None) :
+            table = doc.get_element_by_id (id)
+            # Check if the element is a table
+            if table.tag != 'table' :
+                table = None
 
-        # Si précisé, on récupère la bonne table, sinon en prend la première
-        ##TODO
-        table = tables[0]
+        # If there is no id and if the id element is not a table, we take the first table of the page
+        if table == None:
+            tables = doc.xpath('//table')
+            table = tables[0]
 
-        tr_elements = table.xpath('//tr')
+        tr_elements = table.cssselect("tr")
 
-        # On regarde si la première ligne est un Header ou pas si oui -> dataset.header; sinon -> pas de header
-        ##TODO
+        # if the first row contains headers, we set it as the dataset headers
+        first_tr = tr_elements.pop(0)
+        length = len (first_tr)
+        if first_tr[0].tag == 'th' :
+            dset.headers = [t.text_content() for t in first_tr]
+        else :
+            dset.append([t.text_content() for t in first_tr])
 
         for tr in tr_elements:
-            dset.append([t.text_content() for t in tr])
+            if len (tr) == length :
+                dset.append([t.text_content() for t in tr])
 
         return dset
 
