@@ -630,8 +630,6 @@ class HTMLTests(BaseTestCase):
 
         self.assertEqual(html, d.html)
 
-##TODO
-############################################################"""
     def test_html_format_detect(self):
         """Test HTML format detection."""
 
@@ -642,7 +640,6 @@ class HTMLTests(BaseTestCase):
 
         fmt = registry.get_format('html')
         self.assertTrue(fmt.detect(_html))
-	# Sometimes i have : AttributeError: type object 'HTMLFormat' has no attribute 'detect'
         self.assertFalse(fmt.detect(_bunk))
 
     def test_html_import_set(self):
@@ -667,12 +664,8 @@ class HTMLTests(BaseTestCase):
         _html = data.html
 
         data.html = _html
-	#AttributeError: type object 'HTMLFormat' has no attribute 'import_set'
 
         self.assertEqual(_html, data.html)
-
-############################################################"""
-
 
 class RSTTests(BaseTestCase):
     def test_rst_force_grid(self):
